@@ -15,10 +15,12 @@ public class LogoutInteractor implements LogoutInputBoundary {
 
     @Override
     public void execute() {
+        System.out.println("logout interactor is executing");
+        String olduser = userDataAccessObject.getCurrentUsername();
         // * set the current username to null in the DAO
-        final String username = null;
+        userDataAccessObject.setCurrentUsername(null);
         // * instantiate the `LogoutOutputData`, which needs to contain the username.
-        LogoutOutputData lg = new  LogoutOutputData(username);
+        LogoutOutputData lg = new LogoutOutputData(olduser);
         // * tell the presenter to prepare a success view.
         logoutPresenter.prepareSuccessView(lg);
     }
